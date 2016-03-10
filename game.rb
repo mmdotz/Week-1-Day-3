@@ -3,17 +3,11 @@
 
 class Card
 
+  attr_accessor :suit, :value
+
   def initialize(suit, value)
-    @suit
-    @value
-  end
-
-  def value
-    @value.to_i
-  end
-
-  def suit
-    @suit
+    @suit = suit
+    @value = value
   end
 
   def to_s
@@ -53,8 +47,9 @@ class Deck
   @fulldeck = []                                 # => []
   #add value of face cards here, all are currently identical
   suits = [:hearts, :diamonds, :spades, :clubs]  # => [:hearts, :diamonds, :spades, :clubs]
+  values = 2..10
   suits.each do |suit|                           # => [:hearts, :diamonds, :spades, :clubs]
-    (2..10).each do |value|                      # => 2..10, 2..10, 2..10, 2..10
+    values.each do |value|                      # => 2..10, 2..10, 2..10, 2..10
       new_card = Card.new(suit, value)           # => #<Card:0x007fcc05017ce0>, #<Card:0x007fcc050177e0>, #<Card:0x007fcc050173f8>, #<Card:0x007fcc05016fc0>, #<Card:0x007fcc05016b10>, #<Card:0x007fcc05016688>, #<Card:0x007fcc05016098>, #<Card:0x007fcc05015b48>, #<Card:0x007fcc050155d0>, #<Card:0x007fcc0500f388>, #<Card:0x007fcc0500ec08>, #<Card:0x007fcc0500e460>, #<Card:0x007fcc0500dc40>, #<Card:0x007fcc0500d3d0>, #<Card:0x007fcc0500cb38>, #<Card:0x007fcc0500c278>, #<Card:0x007fcc04173900>, #...
       @fulldeck << new_card        # => [#<Card:0x007fcc05017a10>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>, #<Card:0x007fcc05016e30>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc050169d0>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc0...
     end                                          # => 2..10, 2..10, 2..10, 2..10
@@ -98,11 +93,11 @@ deck = Deck.new           #new instance of Deck
 deck.shuffle                 # => [#<Card:0x007fcc0416a800>, #<Card:0x007fcc04141c20>, #<Card:0x007fcc0416b368>, #<Card:0x007fcc050159e0>, #<Card:0x007fcc041530b0>, #<Card:0x007fcc05017290>, #<Card:0x007fcc04172b90>, #<Card:0x007fcc0500d290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc0414bc20>, #<Card:0x007fcc05015490>, #<Card:0x007fcc05016480>, #<Card:0x007fcc041597d0>, #<Card:0x007fcc0500fb30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc041605a8>, #<Card:0x007fcc041613b8>, #<Card:0x007fcc05014...
 puts deck.length          #check it is 52
 
-deck.fulldeck.each do |card|                       # => [#<Card:0x007fcc0416a800>, #<Card:0x007fcc04141c20>, #<Card:0x007fcc0416b368>, #<Card:0x007fcc050159e0>, #<Card:0x007fcc041530b0>, #<Card:0x007fcc05017290>, #<Card:0x007fcc04172b90>, #<Card:0x007fcc0500d290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc0414bc20>, #<Card:0x007fcc05015490>, #<Card:0x007fcc05016480>, #<Card:0x007fcc041597d0>, #<Card:0x007fcc0500fb30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc041605a8>, #<Card:0x007fcc041613b8>...
-  puts "#{card.value}"                             # => nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil
-end                                                # => [#<Card:0x007fcc0416a800>, #<Card:0x007fcc04141c20>, #<Card:0x007fcc0416b368>, #<Card:0x007fcc050159e0>, #<Card:0x007fcc041530b0>, #<Card:0x007fcc05017290>, #<Card:0x007fcc04172b90>, #<Card:0x007fcc0500d290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc0414bc20>, #<Card:0x007fcc05015490>, #<Card:0x007fcc05016480>, #<Card:0x007fcc041597d0>, #<Card:0x007fcc0500fb30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc041605a8>, #<Card:0x007fcc041613b8>...
+deck.fulldeck.each do |card|
+  puts "#{card.value}"
+end
 #deal 2 card each
-player_hand = cardplayer.set_card(deck.deal(2))   #return value??
+player_hand = cardplayer.set_card(deck.deal(2).value)   #return value??
 dealer_hand = dealer.set_card(deck.deal(2).value)
 
 #evaluate the cards, sum values
