@@ -94,7 +94,7 @@ deck.shuffle                 # => [#<Card:0x007fcc0416a800>, #<Card:0x007fcc0414
 puts deck.length          #check it is 52
 
 deck.fulldeck.each do |card|
-  puts "#{card.value}"
+  puts "#{card.value} of #{card.suit}"
 end
 #deal 2 card each
 player_hand = cardplayer.set_card(deck.deal(2).value)   #return value??
