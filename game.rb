@@ -4,12 +4,12 @@
 class Card
 
   def initialize(suit, value)
-    @suit                      # => nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil
-    @value                     # => nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil
+    @suit
+    @value
   end
 
   def value
-    @value
+    @value.to_i
   end
 
   def suit
@@ -17,7 +17,7 @@ class Card
   end
 
   def to_s
-    "You have a #{@value} of #{@suit}"
+    "You have a value: #{@value} of card: #{@suit}"
   end
 end
 
@@ -55,30 +55,32 @@ class Deck
   suits = [:hearts, :diamonds, :spades, :clubs]  # => [:hearts, :diamonds, :spades, :clubs]
   suits.each do |suit|                           # => [:hearts, :diamonds, :spades, :clubs]
     (2..10).each do |value|                      # => 2..10, 2..10, 2..10, 2..10
-      new_card = Card.new(suit, value)           # => #<Card:0x007f847a990538>, #<Card:0x007f847a990060>, #<Card:0x007f847a98bc68>, #<Card:0x007f847a98b8a8>, #<Card:0x007f847a98b420>, #<Card:0x007f847a98af48>, #<Card:0x007f847a98a9d0>, #<Card:0x007f847a98a390>, #<Card:0x007f847a989dc8>, #<Card:0x007f847a983ba8>, #<Card:0x007f847a983388>, #<Card:0x007f847a982bb8>, #<Card:0x007f847a9823c0>, #<Card:0x007f847a981b28>, #<Card:0x007f847a981290>, #<Card:0x007f847a9809a8>, #<Card:0x007f847a980098>, #...
-      @fulldeck << Card.new(suit, value)         # => [#<Card:0x007f847a990240>], [#<Card:0x007f847a990240>, #<Card:0x007f847a98bee8>], [#<Card:0x007f847a990240>, #<Card:0x007f847a98bee8>, #<Card:0x007f847a98bb28>], [#<Card:0x007f847a990240>, #<Card:0x007f847a98bee8>, #<Card:0x007f847a98bb28>, #<Card:0x007f847a98b6f0>], [#<Card:0x007f847a990240>, #<Card:0x007f847a98bee8>, #<Card:0x007f847a98bb28>, #<Card:0x007f847a98b6f0>, #<Card:0x007f847a98b290>], [#<Card:0x007f847a990240>, #<Card:0x007f847...
+      new_card = Card.new(suit, value)           # => #<Card:0x007fcc05017ce0>, #<Card:0x007fcc050177e0>, #<Card:0x007fcc050173f8>, #<Card:0x007fcc05016fc0>, #<Card:0x007fcc05016b10>, #<Card:0x007fcc05016688>, #<Card:0x007fcc05016098>, #<Card:0x007fcc05015b48>, #<Card:0x007fcc050155d0>, #<Card:0x007fcc0500f388>, #<Card:0x007fcc0500ec08>, #<Card:0x007fcc0500e460>, #<Card:0x007fcc0500dc40>, #<Card:0x007fcc0500d3d0>, #<Card:0x007fcc0500cb38>, #<Card:0x007fcc0500c278>, #<Card:0x007fcc04173900>, #...
+      @fulldeck << new_card        # => [#<Card:0x007fcc05017a10>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>, #<Card:0x007fcc05016e30>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc050169d0>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc0...
     end                                          # => 2..10, 2..10, 2..10, 2..10
-    @fulldeck << Card.new(suit, "J")             # => [#<Card:0x007f847a990240>, #<Card:0x007f847a98bee8>, #<Card:0x007f847a98bb28>, #<Card:0x007f847a98b6f0>, #<Card:0x007f847a98b290>, #<Card:0x007f847a98adb8>, #<Card:0x007f847a98a868>, #<Card:0x007f847a98a1d8>, #<Card:0x007f847a989c88>, #<Card:0x007f847a989698>], [#<Card:0x007f847a990240>, #<Card:0x007f847a98bee8>, #<Card:0x007f847a98bb28>, #<Card:0x007f847a98b6f0>, #<Card:0x007f847a98b290>, #<Card:0x007f847a98adb8>, #<Card:0x007f847a98a868>...
-    @fulldeck << Card.new(suit, "Q")             # => [#<Card:0x007f847a990240>, #<Card:0x007f847a98bee8>, #<Card:0x007f847a98bb28>, #<Card:0x007f847a98b6f0>, #<Card:0x007f847a98b290>, #<Card:0x007f847a98adb8>, #<Card:0x007f847a98a868>, #<Card:0x007f847a98a1d8>, #<Card:0x007f847a989c88>, #<Card:0x007f847a989698>, #<Card:0x007f847a9890d0>], [#<Card:0x007f847a990240>, #<Card:0x007f847a98bee8>, #<Card:0x007f847a98bb28>, #<Card:0x007f847a98b6f0>, #<Card:0x007f847a98b290>, #<Card:0x007f847a98adb8>...
-    @fulldeck << Card.new(suit, "K")             # => [#<Card:0x007f847a990240>, #<Card:0x007f847a98bee8>, #<Card:0x007f847a98bb28>, #<Card:0x007f847a98b6f0>, #<Card:0x007f847a98b290>, #<Card:0x007f847a98adb8>, #<Card:0x007f847a98a868>, #<Card:0x007f847a98a1d8>, #<Card:0x007f847a989c88>, #<Card:0x007f847a989698>, #<Card:0x007f847a9890d0>, #<Card:0x007f847a9889a0>], [#<Card:0x007f847a990240>, #<Card:0x007f847a98bee8>, #<Card:0x007f847a98bb28>, #<Card:0x007f847a98b6f0>, #<Card:0x007f847a98b290>...
-    @fulldeck << Card.new(suit, "A")             # => [#<Card:0x007f847a990240>, #<Card:0x007f847a98bee8>, #<Card:0x007f847a98bb28>, #<Card:0x007f847a98b6f0>, #<Card:0x007f847a98b290>, #<Card:0x007f847a98adb8>, #<Card:0x007f847a98a868>, #<Card:0x007f847a98a1d8>, #<Card:0x007f847a989c88>, #<Card:0x007f847a989698>, #<Card:0x007f847a9890d0>, #<Card:0x007f847a9889a0>, #<Card:0x007f847a988270>], [#<Card:0x007f847a990240>, #<Card:0x007f847a98bee8>, #<Card:0x007f847a98bb28>, #<Card:0x007f847a98b6f0>...
+    @fulldeck << Card.new(suit, "J")             # => [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc05016480>, #<Card:0x007fcc05015ee0>, #<Card:0x007fcc050159e0>, #<Card:0x007fcc05015490>, #<Card:0x007fcc05014d88>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc05016480>, #<Card:0x007fcc05015ee0>...
+    @fulldeck << Card.new(suit, "Q")             # => [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc05016480>, #<Card:0x007fcc05015ee0>, #<Card:0x007fcc050159e0>, #<Card:0x007fcc05015490>, #<Card:0x007fcc05014d88>, #<Card:0x007fcc050146a8>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc05016480>...
+    @fulldeck << Card.new(suit, "K")             # => [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc05016480>, #<Card:0x007fcc05015ee0>, #<Card:0x007fcc050159e0>, #<Card:0x007fcc05015490>, #<Card:0x007fcc05014d88>, #<Card:0x007fcc050146a8>, #<Card:0x007fcc050140e0>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc050169d0>...
+    @fulldeck << Card.new(suit, "A")
+    @fulldeck          # => [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc05016480>, #<Card:0x007fcc05015ee0>, #<Card:0x007fcc050159e0>, #<Card:0x007fcc05015490>, #<Card:0x007fcc05014d88>, #<Card:0x007fcc050146a8>, #<Card:0x007fcc050140e0>, #<Card:0x007fcc0500fb30>], [#<Card:0x007fcc05017a10>, #<Card:0x007fcc05017600>, #<Card:0x007fcc05017290>, #<Card:0x007fcc05016e30>...
     end                                          # => [:hearts, :diamonds, :spades, :clubs]
   end
 
   def fulldeck
-    @fulldeck
+    @fulldeck   # => [#<Card:0x007fcc0416a800>, #<Card:0x007fcc04141c20>, #<Card:0x007fcc0416b368>, #<Card:0x007fcc050159e0>, #<Card:0x007fcc041530b0>, #<Card:0x007fcc05017290>, #<Card:0x007fcc04172b90>, #<Card:0x007fcc0500d290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc0414bc20>, #<Card:0x007fcc05015490>, #<Card:0x007fcc05016480>, #<Card:0x007fcc041597d0>, #<Card:0x007fcc0500fb30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc041605a8>, #<Card:0x007fcc041613b8>, #<Card:0x007fcc050146a8>, #<Card:...
   end
 
   #shuffle deck every game
   def shuffle
-    @fulldeck.shuffle!  # => [#<Card:0x007f847a979db0>, #<Card:0x007f847a968808>, #<Card:0x007f847a981150>, #<Card:0x007f847a98adb8>, #<Card:0x007f847a9629d0>, #<Card:0x007f847a96bd50>, #<Card:0x007f847a982258>, #<Card:0x007f847a980840>, #<Card:0x007f847a98b290>, #<Card:0x007f847a961b98>, #<Card:0x007f847a97b4d0>, #<Card:0x007f847a989698>, #<Card:0x007f847a940a38>, #<Card:0x007f847a98bee8>, #<Card:0x007f847a98a1d8>, #<Card:0x007f847a960d88>, #<Card:0x007f847a97a8a0>, #<Card:0x007f847a95bc98>,...
+    @fulldeck.shuffle!  # => [#<Card:0x007fcc0416a800>, #<Card:0x007fcc04141c20>, #<Card:0x007fcc0416b368>, #<Card:0x007fcc050159e0>, #<Card:0x007fcc041530b0>, #<Card:0x007fcc05017290>, #<Card:0x007fcc04172b90>, #<Card:0x007fcc0500d290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc0414bc20>, #<Card:0x007fcc05015490>, #<Card:0x007fcc05016480>, #<Card:0x007fcc041597d0>, #<Card:0x007fcc0500fb30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc041605a8>, #<Card:0x007fcc041613b8>, #<Card:0x007fcc050146a8>,...
   end
 
   #deal 2 cards at first, 1 card per hit
   def deal(n)
     n.times do
-    @fulldeck.pop
+    @dealt = @fulldeck.pop
     end
+    @dealt
   end
 
 
@@ -93,23 +95,23 @@ puts "Welcome to Blackjack"  # => nil
 dealer = Player.new       #new instance of Player
 cardplayer = Player.new   #new instance of Player
 deck = Deck.new           #new instance of Deck
-deck.shuffle                 # => [#<Card:0x007f847a979db0>, #<Card:0x007f847a968808>, #<Card:0x007f847a981150>, #<Card:0x007f847a98adb8>, #<Card:0x007f847a9629d0>, #<Card:0x007f847a96bd50>, #<Card:0x007f847a982258>, #<Card:0x007f847a980840>, #<Card:0x007f847a98b290>, #<Card:0x007f847a961b98>, #<Card:0x007f847a97b4d0>, #<Card:0x007f847a989698>, #<Card:0x007f847a940a38>, #<Card:0x007f847a98bee8>, #<Card:0x007f847a98a1d8>, #<Card:0x007f847a960d88>, #<Card:0x007f847a97a8a0>, #<Card:0x007f847a95b...
+deck.shuffle                 # => [#<Card:0x007fcc0416a800>, #<Card:0x007fcc04141c20>, #<Card:0x007fcc0416b368>, #<Card:0x007fcc050159e0>, #<Card:0x007fcc041530b0>, #<Card:0x007fcc05017290>, #<Card:0x007fcc04172b90>, #<Card:0x007fcc0500d290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc0414bc20>, #<Card:0x007fcc05015490>, #<Card:0x007fcc05016480>, #<Card:0x007fcc041597d0>, #<Card:0x007fcc0500fb30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc041605a8>, #<Card:0x007fcc041613b8>, #<Card:0x007fcc05014...
 puts deck.length          #check it is 52
 
+deck.fulldeck.each do |card|                       # => [#<Card:0x007fcc0416a800>, #<Card:0x007fcc04141c20>, #<Card:0x007fcc0416b368>, #<Card:0x007fcc050159e0>, #<Card:0x007fcc041530b0>, #<Card:0x007fcc05017290>, #<Card:0x007fcc04172b90>, #<Card:0x007fcc0500d290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc0414bc20>, #<Card:0x007fcc05015490>, #<Card:0x007fcc05016480>, #<Card:0x007fcc041597d0>, #<Card:0x007fcc0500fb30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc041605a8>, #<Card:0x007fcc041613b8>...
+  puts "#{card.value}"                             # => nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil
+end                                                # => [#<Card:0x007fcc0416a800>, #<Card:0x007fcc04141c20>, #<Card:0x007fcc0416b368>, #<Card:0x007fcc050159e0>, #<Card:0x007fcc041530b0>, #<Card:0x007fcc05017290>, #<Card:0x007fcc04172b90>, #<Card:0x007fcc0500d290>, #<Card:0x007fcc05016e30>, #<Card:0x007fcc0414bc20>, #<Card:0x007fcc05015490>, #<Card:0x007fcc05016480>, #<Card:0x007fcc041597d0>, #<Card:0x007fcc0500fb30>, #<Card:0x007fcc050169d0>, #<Card:0x007fcc041605a8>, #<Card:0x007fcc041613b8>...
 #deal 2 card each
 player_hand = cardplayer.set_card(deck.deal(2))   #return value??
-dealer_hand = dealer.set_card(deck.deal(2))
+dealer_hand = dealer.set_card(deck.deal(2).value)
 
 #evaluate the cards, sum values
 #carplayer.score = value of card1 + card 2
 #dealer.score = value of card1 + card 2
 
 puts "Would you like to (H)it or (S)tay: H/S"
+puts "dealer: #{dealer_hand}"
+puts "player: #{player_hand}"
+
 #if dealer_score <16, deck.deal(1) until score > 16
 #loop to ask again
-
-
-
-
-
-
